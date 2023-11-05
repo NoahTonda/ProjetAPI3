@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>COURS</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+<table border="1">
+  <th>ID</th>
+  <th>SIGLE</th>
+  <th>PLACES</th>
+  <tr th:each="unLocal : ${mesLocaux}">
+    <td th:text="${unLocal.id}"/>
+    <td th:text="${unLocal.sigle}"/>
+    <td th:text="${unLocal.places}"/>
+  </tr>
+</table>
+<a href ="/">retour</a>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>SESSION COURS</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+<table border="1">
+  <th>ID</th>
+  <th>DATE DEBUT</th>
+  <th>DATE FIN</th>
+  <th>INSCRITS</th>
+  <th>COURS</th>
+  <th>FORMATEUR</th>
+  <tr th:each="uneSession : ${mesSessions}">
+    <td th:text="${uneSession.id}"/>
+    <td th:text="${uneSession.dateDebut}"/>
+    <td th:text="${uneSession.dateFin}"/>
+    <td th:text="${uneSession.nbreInscrits}"/>
+    <td th:text="${uneSession.cours.matiere}"/>
+    <td th:text="${uneSession.formateur.nom}"/>
+  </tr>
+</table>
+<a href ="/">retour</a>
+
+</body>
+</html>

@@ -2,9 +2,95 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello</title>
+    <title>ACCUEIL</title>
 </head>
 <body>
-    <h1>hello</h1>
+<h1> bienvenue dans la gestion de l'organisme de formation </h1>
+<h2>FORMATEURS</h2>
+<p><a href="formateurs/tous">voir tous les formateurs</a></p>
+<h2>Ajouter un formateur</h2>
+<p><form action = "formateurs/create" method="get">
+    mail : <input type = "text" name="mail"> <br>
+    nom : <input type = "text" name="nom"> <br>
+    prenom : <input type = "text" name="prenom"> <br>
+    <input type="submit" name="ok" value="ok">
+</form>
+</p>
+<h2>Rechercher un formateur</h2>
+<p><form action = "formateurs/selectionid" method="get">
+    idformateur : <input type = "text" name="idformateur"> <br>
+    <input type="submit" name="ok" value="ok">
+</form>
+</p>
+<p><form action = "formateurs/selectionnom" method="get">
+    nom formateur : <input type = "text" name="nom"> <br>
+    <input type="submit" name="ok" value="ok">
+</form>
+</p>
+<h2>Supprimer un formateur</h2>
+<p><form action = "formateurs/delete" method="get">
+    idformateur : <input type = "text" name="idformateur"> <br>
+    <input type="submit" name="ok" value="ok">
+</form>
+
+<h2>SESSION COURS</h2>
+<p><a href="sessioncours/tous">voir toutes les sessions de cours</a></p>
+
+<h2>Recherche par formateur</h2>
+<p><form action = "sessioncours/rechparform" method="get">
+    idformateur : <input type = "text" name="idformateur"> <br>
+    <input type="submit" name="ok" value="ok">
+</form>
+</p>
+<h2>Recherche par cours</h2>
+<p><form action = "sessioncours/rechparcours" method="get">
+    idcours : <input type = "text" name="idcours"> <br>
+    <input type="submit" name="ok" value="ok">
+</form>
+</p>
+<h2>Supprimer une session de cours</h2>
+<p><form action = "sessioncours/delete" method="get">
+    idsessionCours : <input type = "text" name="idsessionCours"> <br>
+    <input type="submit" name="ok" value="ok">
+</form>
+
+<h2>COURS</h2>
+<p><a href="cours/tous">voir tous les cours</a></p>
+<h2>Ajouter un cours</h2>
+<p><form action = "cours/create" method="get">
+    matiere : <input type = "text" name="matiere"> <br>
+    nombre d'heures : <input type = "text" name="nbreheures"> <br>
+    <input type="submit" name="ok" value="ok">
+</form>
+</p>
+<h2>Supprimer un cours</h2>
+<p><form action = "cours/delete" method="get">
+    idcours : <input type = "text" name="idcours"> <br>
+    <input type="submit" name="ok" value="ok">
+</form>
+
+<h2>LOCAUX</h2>
+<p><a href="local/tous">voir tous les locaux</a></p>
+<h2>Ajouter un local</h2>
+<p><form action = "local/create" method="get">
+    sigle : <input type = "text" name="sigle"> <br>
+    places : <input type = "text" name="places"> <br>
+    <input type="submit" name="ok" value="ok">
+</form>
+</p>
+<h2>Rechercher un local</h2>
+<p><form action = "local/selection" method="get">
+    idlocal : <input type = "text" name="idlocal"> <br>
+    <input type="submit" name="ok" value="ok">
+</form>
+</p>
+<h2>Supprimer un local</h2>
+
+<p><form action = "local/delete" method="get">
+    idlocal : <input type = "text" name="idlocal"> <br>
+    <input type="submit" name="ok" value="ok">
+</form>
+</p>
+
 </body>
 </html>

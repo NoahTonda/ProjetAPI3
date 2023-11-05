@@ -1,128 +1,56 @@
-package proj.metier;
+package be.condorcet.projet.modele;
 
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.*;
+
 import java.util.List;
 
 /**
  * @author noaht
  * @version 1.0
- * @see Maitrise
  * @see SessionCours
  */
+@Data
+@AllArgsConstructor @RequiredArgsConstructor @NoArgsConstructor
+@ToString
+@Entity
+@Table(name = "APICOURS", schema = "ORA11", catalog = "orcl.condorcet.be")
+
 public class Cours {
 
-     /**
-     * id du cours
-     */
-    private int id;
+
+    /**
+    * id du cours
+    */
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cours_generator")
+    @SequenceGenerator(name="cours_generator", sequenceName = "APICOURS_SEQ", allocationSize=1)
+    @Column(name = "id_cours")
+    private Integer id;
     /**
      * nom de la matière
      */
+    @NonNull
+    @Column(name = "matière")
+
     private String matiere;
     /**
-     * nombre d'heure de cette matière données
+     * nombre d'heures de cette matière données
      */
+
+    @NonNull
+    @Column(name = "NBREHEURES")
     private int nbreHeures;
-    /**
-     * liste des spécialistes de cette matière
-     */
-    private List<Maitrise> specialiste=new ArrayList<>();
     /**
      * liste des sessions de ce cours
      */
+    @JsonIgnore
+    @OneToMany(mappedBy = "cours")
+
+    @ToString.Exclude
     private List<SessionCours> session;
 
-    /**
-     * getter de l'id du cours
-     * @return l'id du cours
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * setter de l'id du cours
-     * @param id l'id du cours
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    /**
-     * getter du nom de la matière
-     * @return nom de la matière
-     */
-    public String getMatiere() {
-        return matiere;
-    }
-
-    /**
-     * setter du nom de la matière
-     * @param matiere nom de la matière
-     */
-    public void setMatiere(String matiere) {
-        this.matiere = matiere;
-    }
-
-    /**
-     * getter du nombre d'heure de cours
-     * @return nombre d'heure de cours
-     */
-    public int getNbreHeures() {
-        return nbreHeures;
-    }
-
-    /**
-     * setter du nombre d'heure de cours
-     * @param nbreHeures nombre d'heure de cours
-     */
-    public void setNbreHeures(int nbreHeures) {
-        this.nbreHeures = nbreHeures;
-    }
-
-    /**
-     * getter de la liste des spécialistes de ce cours
-     * @return liste des spécialistes de ce cours
-     */
-    public List<Maitrise> getSpecialite() {
-        return specialiste;
-    }
-
-    /**
-     * setter de la liste des spécialistes de ce cours
-     * @param specialite liste des spécialistes de ce cours
-     */
-    public void setSpecialite(List<Maitrise> specialite) {
-        this.specialiste = specialite;
-    }
-
-    /**
-     * getter des la liste des sessions de ce cours données
-     * @return la liste des sessions de ce cours données
-     */
-    public List<SessionCours> getSession() {
-        return session;
-    }
-
-    /**
-     * setter de la liste des sessions de ce cours données
-     * @param session la liste des sessions de ce cours données
-     */
-    public void setSession(List<SessionCours> session) {
-        this.session = session;
-    }
-
-    /**
-     *
-     * @param id identifiant du cours
-     * @param matiere nom de la matière
-     * @param nbreHeures nombre d'heure de cette matière données
-     */
-    public Cours(int id, String matiere, int nbreHeures) {
-        this.id = id;
-        this.matiere = matiere;
-        this.nbreHeures = nbreHeures;
-    }
     /**
      * methode permettant d'afficher un cours
      * @return les informations du cours

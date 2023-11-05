@@ -1,96 +1,66 @@
-package be.condorcet.demosb1.modele;
+package be.condorcet.projet.modele;
 
-public class Client {
-    private String nom,prenom,localite,rue ,num,tel;
-    private int idclient,cp ;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.*;
 
-    public Client() {
-    }
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+/**
+ * @author noaht
+ * @version 1.0
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
+@ToString
+@Entity
+@Table(name = "APIFORMATEUR", schema = "ORA11", catalog = "ORCL.CONDORCET.BE")
 
-    public Client(int idclient,String nom,String prenom,int cp,
-                  String localite,String rue,String num,String tel){
-        this.idclient=idclient;
-        this.nom=nom;
-        this.prenom=prenom;
-        this.cp=cp;
-        this.localite=localite;
-        this.rue=rue;
-        this.num=num;
-        this.tel=tel;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public int getIdclient() {
-        return idclient;
-    }
-
-    public int getCp() {
-        return cp;
-    }
-
-    public String getLocalite() {
-        return localite;
-    }
-
-    public String getRue() {
-        return rue;
-    }
+public class Formateur {
 
 
-    public String getNum() {
-        return num;
-    }
+    /**
+     * identifiant unique numero de formateur
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "formateur_generator")
+    @SequenceGenerator(name="formateur_generator", sequenceName = "APIFORMATEUR_SEQ", allocationSize=1)
+    @Column(name = "id_formateur")
+    private Integer id;
+    /**
+     * mail unique du formateur
+     */
+    @NonNull
+    private String mail;
+    /**
+     * nom du formateur
+     */
+    @NonNull
+    private String nom;
+    /**
+     * prénom du formateur
+     */
+    @NonNull
+    private String prenom;
+    /**
+     * liste des sessions de cours données par le formateur
+     */
+    @JsonIgnore
+    @OneToMany(mappedBy = "formateur")
+
+    @ToString.Exclude
+    private List<SessionCours> session=new ArrayList<>();
 
 
-    public String getTel() {
-        return tel;
-    }
-
-    public void setIdclient(int idclient){
-        this.idclient=idclient;
-    }
-
-    public void setCp(int cp) {
-        this.cp=cp;
-    }
-
-
-    public void setLocalite(String localite) {
-        this.localite=localite;
-    }
-
-
-    public void setRue(String rue) {
-        this.rue=rue;
-    }
-
-
-    public void setNum(String num) {
-        this.num=num;
-    }
-
-
-    public void setTel(String tel) {
-        this.tel=tel;
-    }
-
+    /**
+     * methode permettant d'afficher un formateur
+     * @return les informations du formateur
+     */
     @Override
     public String toString() {
-        return "Client{" +" idclient=" + idclient + ",nom=" + nom + ", prenom=" + prenom + ", localite=" + localite + ", rue=" + rue + ", num=" + num + ", tel=" + tel + ", cp=" + cp + '}';
+        return "id :"+ id+", nom :'" + nom +"'"+ ", prenom :'" + prenom +"'"+ ", mail :'" + mail+"'\n";
     }
 }

@@ -2,19 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Infos Formateur</title>
+    <title>Infos Cours</title>
 </head>
 <body>
 <table border="1">
     <th>ID</th>
-    <th>MAIL</th>
-    <th>NOM</th>
-    <th>PRENOM</th>
+    <th>MATIERE</th>
+    <th>NOMBRE D'HEURES</th>
     <tr>
-        <td th:text="${monform.id}"/>
-        <td th:text="${monform.mail}"/>
-        <td th:text="${monform.nom}"/>
-        <td th:text="${monform.prenom}"/>
+        <td th:text="${moncours.id}"/>
+        <td th:text="${moncours.matiere}"/>
+        <td th:text="${moncours.nbreHeures}"/>
     </tr>
 </table>
 
@@ -25,7 +23,7 @@
     <th>INSCRITS</th>
     <th>COURS</th>
     <th>FORMATEUR</th>
-    <tr th:each="sessionCours : ${monform.session}">
+    <tr th:each="sessionCours : ${moncours.session}">
         <td th:text="${sessionCours.id}"/>
         <td th:text="${sessionCours.dateDebut}"/>
         <td th:text="${sessionCours.dateFin}"/>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>COURS</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+<table border="1">
+  <th>ID</th>
+  <th>MATIERE</th>
+  <th>DATE NOMBRE D'HEURES</th>
+  <tr th:each="unCours : ${mesCours}">
+    <td th:text="${unCours.id}"/>
+    <td th:text="${unCours.matiere}"/>
+    <td th:text="${unCours.nbreHeures}"/>
+  </tr>
+</table>
+<a href ="/">retour</a>
+
+</body>
+</html>

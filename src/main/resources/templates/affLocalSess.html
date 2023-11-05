@@ -7,14 +7,12 @@
 <body>
 <table border="1">
     <th>ID</th>
-    <th>MAIL</th>
-    <th>NOM</th>
-    <th>PRENOM</th>
+    <th>SIGLE</th>
+    <th>PLACES</th>
     <tr>
-        <td th:text="${monform.id}"/>
-        <td th:text="${monform.mail}"/>
-        <td th:text="${monform.nom}"/>
-        <td th:text="${monform.prenom}"/>
+        <td th:text="${monlocal.id}"/>
+        <td th:text="${monlocal.sigle}"/>
+        <td th:text="${monlocal.places}"/>
     </tr>
 </table>
 
@@ -25,7 +23,7 @@
     <th>INSCRITS</th>
     <th>COURS</th>
     <th>FORMATEUR</th>
-    <tr th:each="sessionCours : ${monform.session}">
+    <tr th:each="sessionCours : ${monlocal.sessions}">
         <td th:text="${sessionCours.id}"/>
         <td th:text="${sessionCours.dateDebut}"/>
         <td th:text="${sessionCours.dateFin}"/>

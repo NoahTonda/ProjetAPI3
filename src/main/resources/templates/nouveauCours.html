@@ -3,19 +3,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tous Formateurs</title>
+    <title>Tous Cours</title>
 </head>
 <body>
 <table border="1">
     <th>ID</th>
-    <th>NOM</th>
-    <th>PRENOM</th>
-    <th>TELEPHONE</th>
+    <th>MATIERE</th>
+    <th>NOMBRE D'HEURES</th>
     <tr>
-        <td th:text="${nouvform.id}"/>
-        <td th:text="${nouvform.mail}"/>
-        <td th:text="${nouvform.nom}"/>
-        <td th:text="${nouvform.prenom}"/>
+        <td th:text="${nouvcours.id}"/>
+        <td th:text="${nouvcours.matiere}"/>
+        <td th:text="${nouvcours.nbreHeures}"/>
     </tr>
 </table>
 <a href ="/">retour</a>

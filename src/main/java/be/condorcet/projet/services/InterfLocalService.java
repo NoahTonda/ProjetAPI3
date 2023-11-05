@@ -1,2 +1,6 @@
-package be.condorcet.projet.services;public interface InterfLocalService {
+package be.condorcet.projet.services;
+
+import be.condorcet.projet.modele.Local;
+
+public interface InterfLocalService extends InterfService<Local>{
 }
