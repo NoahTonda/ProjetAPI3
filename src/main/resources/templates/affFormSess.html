@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>affichage Formateur</title>
+</head>
+<body>
+<table border="1">
+    <th>NOM</th>
+    <th>PRENOM</th>
+    <th>ID</th>
+    <tr>
+        <td th:text="${monform.nom}"/>
+        <td th:text="${monform.prenom}"/>
+        <td th:text="${monform.id}"/>
+    </tr>
+</table>
+<h2>Sessions</h2>
+<table border="1">
+    <th>ID</th>
+    <th>DATE DEBUT</th>
+    <th>DATE FIN</th>
+    <th>INSCRITS</th>
+    <th>COURS</th>
+    <th>FORMATEUR</th>
+    <tr th:each="sessionCours : ${monform.session}">
+        <td th:text="${sessionCours.id}"/>
+        <td th:text="${sessionCours.dateDebut}"/>
+        <td th:text="${sessionCours.dateFin}"/>
+        <td th:text="${sessionCours.nbreInscrits}"/>
+        <td th:text="${sessionCours.cours.matiere}"/>
+        <td th:text="${sessionCours.formateur.nom}"/>
+    </tr>
+</table>
+<a href ="/">retour</a>
+
+</body>
+</html>
