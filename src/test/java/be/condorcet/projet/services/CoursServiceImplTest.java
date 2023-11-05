@@ -1,6 +1,7 @@
 package be.condorcet.projet.services;
 
 import be.condorcet.projet.modele.Cours;
+import be.condorcet.projet.modele.Formateur;
 import be.condorcet.projet.modele.SessionCours;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -100,5 +101,15 @@ class CoursServiceImplTest {
         }catch (Exception e){
             fail("erreur de recherche de tous les cours "+e);
         }
+    }
+    @Test
+    void rechMatiere() {
+        List<Cours> lc = coursServiceImpl.read("MatiereTest");
+        boolean trouve=false;
+        for(Cours c : lc){
+            if(c.getMatiere().startsWith("MatiereTest"))  trouve=true;
+            else fail("un record ne correspond pas , Matiere = "+c.getMatiere());
+        }
+        assertTrue(trouve,"record non trouvé dans la liste");
     }
 }
