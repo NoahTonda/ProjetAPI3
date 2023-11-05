@@ -59,9 +59,21 @@
 <h2>Ajouter un cours</h2>
 <p><form action = "cours/create" method="get">
     matiere : <input type = "text" name="matiere"> <br>
-    nombre d'heures : <input type = "text" name="nbreheures"> <br>
+    nombre d'heures : <input type = "number" name="nbreHeures"> <br>
     <input type="submit" name="ok" value="ok">
 </form>
+<h2>Rechercher un cours</h2>
+<p><form action = "cours/selectionmat" method="get">
+    matiere : <input type = "text" name="matiere"> <br>
+    <input type="submit" name="ok" value="ok">
+</form>
+
+</p>
+<p><form action = "cours/selection" method="get">
+    id : <input type = "text" name="idcours"> <br>
+    <input type="submit" name="ok" value="ok">
+</form>
+
 </p>
 <h2>Supprimer un cours</h2>
 <p><form action = "cours/delete" method="get">

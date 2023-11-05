@@ -64,14 +64,14 @@ public class GestFormateur {
     public String read(@RequestParam String nom, Map<String, Object> model){
         System.out.println("recherche du formateur n° "+nom);
         try {
-            List<Formateur> f = formateurServiceImpl.read(nom);
-            model.put("monform",f);
+            List<Formateur> lf = formateurServiceImpl.read(nom);
+            model.put("mesFormateurs",lf);
         }catch (Exception e) {
             System.out.println("----------erreur lors de la recherche -------- " + e);
             model.put("error",e.getMessage());
             return "error";
         }
-        return "affFormSess";
+        return "affichagetousFormateurs";
     }
     @RequestMapping("/delete")
     public String delete(@RequestParam int idformateur, Map<String, Object> model){

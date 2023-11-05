@@ -6,10 +6,12 @@
 </head>
 <body>
 <table border="1">
+  <th>ID</th>
   <th>NOM</th>
   <th>PRENOM</th>
   <th>MAIL</th>
   <tr th:each="unFormateur : ${mesFormateurs}">
+    <td th:text="${unFormateur.id}"/>
     <td th:text="${unFormateur.nom}"/>
     <td th:text="${unFormateur.prenom}"/>
     <td th:text="${unFormateur.mail}"/>

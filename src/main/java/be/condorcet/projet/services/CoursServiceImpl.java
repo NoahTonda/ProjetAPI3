@@ -1,6 +1,7 @@
 package be.condorcet.projet.services;
 
 import be.condorcet.projet.modele.Cours;
+import be.condorcet.projet.modele.Formateur;
 import be.condorcet.projet.repositories.CoursRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,10 @@ public class CoursServiceImpl implements InterfCoursService{
     @Override
     public List<Cours> all() throws Exception {
         return coursRepository.findAll();
+    }
+
+    @Override
+    public List<Cours> read(String matiere) {
+        return coursRepository.findByMatiereLike(matiere+"%");
     }
 }

@@ -32,9 +32,9 @@ public class GestLocal {
     }
 
     @RequestMapping("/create")
-    public String create(@RequestParam String matiere, @RequestParam int nbreHeures, Map<String, Object> model) {
-        System.out.println("création de formateur");
-        Local l = new Local(matiere, nbreHeures);
+    public String create(@RequestParam String sigle, @RequestParam int places, Map<String, Object> model) {
+        System.out.println("création de local");
+        Local l = new Local(sigle, places);
         try {
             localServiceImpl.create(l);//mise à jour du formateur avec son id par l'environnement
             l = localServiceImpl.read(l.getId());

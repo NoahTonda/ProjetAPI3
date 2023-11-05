@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 @Controller
 @RequestMapping("/cours")
@@ -36,7 +37,7 @@ public class GestCours {
         System.out.println("création de formateur");
         Cours c = new Cours(matiere,nbreHeures);
         try {
-            coursServiceImpl.create(c);//mise à jour du formateur avec son id par l'environnement
+            coursServiceImpl.create(c);//mise à jour du cours avec son id par l'environnement
             c = coursServiceImpl.read(c.getId());
             coursServiceImpl.update(c);
             model.put("nouvcours",c);
@@ -60,6 +61,19 @@ public class GestCours {
             return "error";
         }
         return "affCoursSess";
+    }
+    @RequestMapping("/selectionmat")
+    public String read(@RequestParam String matiere, Map<String, Object> model){
+        System.out.println("recherche du cours n° "+matiere);
+        try {
+            List<Cours> lc = coursServiceImpl.read(matiere);
+            model.put("mesCours",lc);
+        }catch (Exception e) {
+            System.out.println("----------erreur lors de la recherche -------- " + e);
+            model.put("error",e.getMessage());
+            return "error";
+        }
+        return "affichagetousCours";
     }
 
     @RequestMapping("/delete")
