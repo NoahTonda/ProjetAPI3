@@ -2,6 +2,7 @@ package be.condorcet.projet.services;
 
 import be.condorcet.projet.modele.Cours;
 import be.condorcet.projet.modele.Formateur;
+import be.condorcet.projet.modele.Local;
 import be.condorcet.projet.modele.SessionCours;
 import be.condorcet.projet.repositories.SessionCoursRepository;
 import jakarta.transaction.Transactional;
@@ -53,6 +54,13 @@ public class SessionCoursServiceImpl implements InterfSessionCoursService{
     @Override
     public List<SessionCours> getSessionsCoursCours(Cours c) {
         List<SessionCours> lsc = sessionCoursRepository.findSessionCoursByCours(c);
+        return lsc;
+    }
+
+
+    @Override
+    public List<SessionCours> getSessionsCoursLocal(Local l) {
+        List<SessionCours> lsc = sessionCoursRepository.findSessionCoursByLocal(l);
         return lsc;
     }
 }

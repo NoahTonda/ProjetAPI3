@@ -47,4 +47,9 @@ public class FormateurServiceImpl implements InterfFormateurService{
     public List<Formateur> read(String nom) {
         return formateurRepository.findByNomLike(nom+"%");
     }
+
+    @Override
+    public Formateur read(String nom, String prenom, String mail) {
+        return formateurRepository.findByNomAndAndPrenomAndMail(nom,prenom,mail);
+    }
 }

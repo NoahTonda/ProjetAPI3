@@ -41,4 +41,13 @@ public class LocalServiceImpl implements InterfLocalService{
         return localRepository.findAll();
     }
 
+    @Override
+    public List<Local> read(String sigle) {
+        return localRepository.findBySigleLike(sigle);
+    }
+
+    @Override
+    public Local read(String sigle, int places) {
+        return localRepository.findBySigleAndPlaces(sigle,places);
+    }
 }

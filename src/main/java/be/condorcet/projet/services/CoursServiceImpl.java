@@ -51,4 +51,9 @@ public class CoursServiceImpl implements InterfCoursService{
     public List<Cours> read(String matiere) {
         return coursRepository.findByMatiereLike(matiere+"%");
     }
+
+    @Override
+    public Cours read(String matiere, int nbreheures) {
+        return coursRepository.findByMatiereAndNbreHeures(matiere, nbreheures).get(0);
+    }
 }

@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface FormateurRepository  extends JpaRepository<Formateur,Integer> {
-    public List<Formateur> findByNomLike(String nom);
-
+    List<Formateur> findByNomLike(String nom);
+    Formateur findByNomAndAndPrenomAndMail(String nom, String prenom, String mail);
 }

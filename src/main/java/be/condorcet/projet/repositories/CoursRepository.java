@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CoursRepository extends JpaRepository<Cours,Integer> {
     public List<Cours> findByMatiereLike(String matiere);
+    public List<Cours> findByMatiereAndNbreHeures(String matiere, int nbreheures);
 }

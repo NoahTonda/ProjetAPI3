@@ -6,6 +6,7 @@ import be.condorcet.projet.modele.SessionCours;
 import java.util.List;
 
 public interface InterfFormateurService extends InterfService<Formateur>{
-    public List<Formateur> read(String nom);
+    List<Formateur> read(String nom);
+    Formateur read (String nom,String prenom, String mail);
 
 }
