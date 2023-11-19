@@ -1,6 +1,9 @@
 package be.condorcet.projet.services;
 
+import be.condorcet.projet.modele.Cours;
 import be.condorcet.projet.modele.Formateur;
+import be.condorcet.projet.modele.Local;
+import be.condorcet.projet.modele.SessionCours;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +21,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FormateurServiceImplTest {
     @Autowired
+    private InterfCoursService coursServiceImpl;
+    @Autowired
     private InterfFormateurService formateurServiceImpl;
-
-
+    @Autowired
+    private InterfSessionCoursService sessionCoursServiceImpl;
+    @Autowired
+    private InterfLocalService localServiceImpl;
     Formateur formateur;
 
     @BeforeEach
@@ -114,6 +123,34 @@ class FormateurServiceImplTest {
             assertNotEquals(0,lc.size(),"la liste ne contient aucun élément");
         }catch (Exception e){
             fail("erreur de recherche de tous les formateur "+e);
+        }
+    }
+
+    @Test
+    void delAvecSession() {
+        try {
+            Cours cours = new Cours("test",30);
+            coursServiceImpl.create(cours);
+
+            Local local = new Local("f30",20);
+            localServiceImpl.create(local);
+
+            SessionCours sc = new SessionCours(Date.valueOf(LocalDate.now()), Date.valueOf(LocalDate.now()), 10, cours, formateur, local);
+            sessionCoursServiceImpl.create(sc);
+
+            formateur.getSession().add(sc);
+            formateurServiceImpl.update(formateur);
+
+            Assertions.assertThrows(Exception.class, () -> {
+                formateurServiceImpl.delete(formateur);
+            }, "effacement réalisé malgré session liée");
+
+            sessionCoursServiceImpl.delete(sc);
+
+            coursServiceImpl.delete(cours);
+            localServiceImpl.delete(local);
+        } catch (Exception e) {
+            fail("erreur de création de session" + e);
         }
     }
 }

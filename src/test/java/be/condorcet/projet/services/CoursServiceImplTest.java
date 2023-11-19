@@ -2,6 +2,7 @@ package be.condorcet.projet.services;
 
 import be.condorcet.projet.modele.Cours;
 import be.condorcet.projet.modele.Formateur;
+import be.condorcet.projet.modele.Local;
 import be.condorcet.projet.modele.SessionCours;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -21,7 +22,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class CoursServiceImplTest {
     @Autowired
     private InterfCoursService coursServiceImpl;
-
+    @Autowired
+    private InterfFormateurService formateurServiceImpl;
+    @Autowired
+    private InterfSessionCoursService sessionCoursServiceImpl;
+    @Autowired
+    private InterfLocalService localServiceImpl;
     Cours cours;
 
     @BeforeEach
@@ -112,4 +118,32 @@ class CoursServiceImplTest {
         }
         assertTrue(trouve,"record non trouvé dans la liste");
     }
+    @Test
+    void delAvecSession() {
+        try {
+            Formateur formateur = new Formateur("test","test","test");
+            formateurServiceImpl.create(formateur);
+
+            Local local = new Local("f30",20);
+            localServiceImpl.create(local);
+
+            SessionCours sc = new SessionCours(Date.valueOf(LocalDate.now()), Date.valueOf(LocalDate.now()), 10, cours, formateur, local);
+            sessionCoursServiceImpl.create(sc);
+
+            cours.getSession().add(sc);
+            coursServiceImpl.update(cours);
+
+            Assertions.assertThrows(Exception.class, () -> {
+                coursServiceImpl.delete(cours);
+            }, "effacement réalisé malgré session liée");
+
+            sessionCoursServiceImpl.delete(sc);
+
+            formateurServiceImpl.delete(formateur);
+            localServiceImpl.delete(local);
+        } catch (Exception e) {
+            fail("erreur de création de session" + e);
+        }
+    }
+
 }
