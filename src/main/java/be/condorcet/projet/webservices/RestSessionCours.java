@@ -19,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*",exposedHeaders = "*")
@@ -67,6 +68,14 @@ public class RestSessionCours {
         System.out.println("recherche des session de courss du local d'id " + id);
         Local l = localServiceImpl.read(id);
         List<SessionCours> lsc = sessionCoursServiceImpl.getSessionsCoursLocal(l);
+        return new ResponseEntity<>(lsc, HttpStatus.OK);
+    }
+
+    //-------------------Retrouver les sessions de cours correspondant à une date donnée--------------------------------------------------------
+    @RequestMapping(value = "/date={date}", method = RequestMethod.GET)
+    public ResponseEntity<List<SessionCours>> getSessionCoursDate(@PathVariable(value = "date") Date date)  throws Exception{
+        System.out.println("recherche des session de cours du " + date);
+        List<SessionCours> lsc = sessionCoursServiceImpl.getSessionCoursDate(date);
         return new ResponseEntity<>(lsc, HttpStatus.OK);
     }
 

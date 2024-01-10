@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -54,6 +55,12 @@ public class SessionCoursServiceImpl implements InterfSessionCoursService{
     @Override
     public List<SessionCours> getSessionsCoursCours(Cours c) {
         List<SessionCours> lsc = sessionCoursRepository.findSessionCoursByCours(c);
+        return lsc;
+    }
+
+    @Override
+    public List<SessionCours> getSessionCoursDate(Date date) {
+        List<SessionCours> lsc = sessionCoursRepository.findSessionCoursByDateDebutLessThanEqualAndDateFinGreaterThanEqual(date,date);
         return lsc;
     }
 
