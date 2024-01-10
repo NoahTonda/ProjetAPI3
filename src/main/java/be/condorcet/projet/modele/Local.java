@@ -51,6 +51,10 @@ public class Local {
 
     private List<SessionCours> sessions=new ArrayList<>();
 
+    public Local(int id) {
+        // Initialisez l'instance avec l'ID
+        this.id = id;
+    }
     /**
      * methode permettant d'afficher un local
      * @return les informations du local

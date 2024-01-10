@@ -53,7 +53,10 @@ public class Formateur {
 
     @ToString.Exclude
     private List<SessionCours> session=new ArrayList<>();
-
+    public Formateur(int id) {
+        // Initialisez l'instance avec l'ID
+        this.id = id;
+    }
 
     /**
      * methode permettant d'afficher un formateur

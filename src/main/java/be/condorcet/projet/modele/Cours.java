@@ -51,6 +51,10 @@ public class Cours {
     @ToString.Exclude
     private List<SessionCours> session;
 
+    public Cours(int id) {
+        // Initialisez l'instance avec l'ID
+        this.id = id;
+    }
     /**
      * methode permettant d'afficher un cours
      * @return les informations du cours
